@@ -5,37 +5,78 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ኤፍሬም እንግዳ ሎተሪ</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,"Noto Sans Ethiopic",sans-serif;background:#07111f;color:#eef5ff}
-a{text-decoration:none;color:inherit}.nav{position:sticky;top:0;z-index:5;background:rgba(7,17,31,.92);backdrop-filter:blur(12px);border-bottom:1px solid #203149}
-.wrap{max-width:1100px;margin:auto;padding:0 18px}.navin{height:68px;display:flex;align-items:center;justify-content:space-between}.logo{font-weight:900;font-size:20px;color:#5ee7ff}.links{display:flex;gap:18px;font-size:14px}.btn{border:0;border-radius:12px;padding:12px 18px;font-weight:800;cursor:pointer;background:#20d3a5;color:#041018}
-.hero{padding:70px 0 45px;background:radial-gradient(circle at 80% 20%,#164d70 0,transparent 38%),linear-gradient(135deg,#081321,#102b45)}
-.grid{display:grid;grid-template-columns:1.3fr .7fr;gap:24px;align-items:center}.eyebrow{color:#5ee7ff;font-weight:800}.hero h1{font-size:clamp(38px,7vw,72px);line-height:1.02;margin:12px 0}.hero p{font-size:18px;color:#b9c8d9;line-height:1.7}.card{background:#0e1b2b;border:1px solid #233850;border-radius:20px;padding:22px;box-shadow:0 14px 45px rgba(0,0,0,.25)}
-.jackpot{font-size:48px;font-weight:900;color:#20d3a5}.mini{color:#9db0c6;font-size:13px}.section{padding:45px 0}.section h2{font-size:30px;margin-top:0}.tickets{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.ticket{padding:22px;border-radius:18px;background:linear-gradient(160deg,#12253a,#0b1727);border:1px solid #29435d}.ticket strong{font-size:28px}.price{font-size:26px;color:#5ee7ff;font-weight:900;margin:15px 0}.features{color:#aebed0;line-height:1.9}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.stat{padding:20px;border-radius:16px;background:#0c1928;border:1px solid #203149}.stat b{font-size:25px}.table{width:100%;border-collapse:collapse}.table th,.table td{padding:14px;border-bottom:1px solid #213349;text-align:left}.footer{padding:30px 0;color:#8295aa;border-top:1px solid #203149}.notice{background:#291f0a;border:1px solid #725b1d;color:#e9d58c;padding:14px;border-radius:12px;margin-top:20px;font-size:13px}
-@media(max-width:760px){.links{display:none}.grid,.tickets{grid-template-columns:1fr}.stats{grid-template-columns:1fr}.hero{padding-top:45px}}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;color:#172033}
+header{background:#075985;color:white;padding:22px;text-align:center}
+main{max-width:700px;margin:auto;padding:18px}
+.card{background:white;padding:20px;margin:14px 0;border-radius:16px;box-shadow:0 3px 14px #0001}
+button{background:#075985;color:white;border:0;padding:13px 18px;border-radius:10px;font-size:16px;margin:5px;cursor:pointer}
+input{padding:12px;border:1px solid #ccc;border-radius:9px;width:90%;margin:7px 0}
+#photo{max-width:180px;max-height:180px;border-radius:50%;display:block;margin:12px auto}
+.ticket{font-size:28px;font-weight:bold;text-align:center;padding:18px;background:#e0f2fe;border-radius:12px}
+nav{display:flex;gap:5px;flex-wrap:wrap;justify-content:center}
+.small{color:#667085}
+.media-box{text-align:center;margin:15px 0}
 </style>
 </head>
 <body>
-<nav class="nav"><div class="wrap navin"><div class="logo">🎟️ ኤፍሬም እንግዳ ሎተሪ</div><div class="links"><a href="#home">Home</a><a href="#tickets">Tickets</a><a href="#winners">Winners</a><a href="#account">Account</a></div><button class="btn" onclick="alert('Demo only')">Login</button></div></nav>
+<header>
+  <h1>🎟️ ኤፍሬም እንግዳ ሎተሪ</h1>
+  <p>ኦፊሴላዊ የሎተሪ እና መዝናኛ ድረ-ገጽ</p>
+</header>
+<main>
+  <nav>
+    <button onclick="show('home')">መነሻ</button>
+    <button onclick="show('ticket')">ቲኬት</button>
+    <button onclick="show('check')">ቼክ</button>
+    <button onclick="show('media')">ፎቶ/ቪዲዮ</button>
+  </nav>
 
-<header id="home" class="hero"><div class="wrap grid">
-<div><div class="eyebrow">✨ MODERN LOTTERY EXPERIENCE</div><h1>እድልህን<br>ፈትን 🎉</h1><p>ቀላል፣ ዘመናዊ እና ለሞባይል የተስማማ የሎተሪ Demo website።</p><button class="btn" onclick="document.querySelector('#tickets').scrollIntoView({behavior:'smooth'})">🎟️ ቲኬት ይምረጡ</button></div>
-<div class="card"><div class="mini">CURRENT JACKPOT</div><div class="jackpot">25,000 ብር</div><div class="mini">Next draw: Demo countdown</div><div style="font-size:30px;margin-top:12px">02 : 18 : 45</div><div class="notice">Demo mode — real-money payments are not connected.</div></div>
-</div></header>
+  <section id="home" class="card">
+    <h2>እንኳን ደህና መጡ!</h2>
+    <p>ይህ በኤፍሬም እንግዳ የተዘጋጀ የሎተሪ እና የሚዲያ ማከፋፈያ ድረ-ገጽ ነው።</p>
+    <button onclick="show('ticket')">ቲኬት አሁን ይቁረጡ</button>
+  </section>
 
-<section id="tickets" class="section"><div class="wrap"><h2>🎟️ የቲኬት አማራጮች</h2><div class="tickets">
-<div class="ticket"><div class="mini">BASIC</div><strong>Starter</strong><div class="price">10 ብር</div><div class="features">✓ 1 Ticket<br>✓ Standard draw<br>✓ Demo wallet</div><button class="btn" onclick="buy('Starter')">Select</button></div>
-<div class="ticket"><div class="mini">POPULAR</div><strong>Standard</strong><div class="price">25 ብር</div><div class="features">✓ 3 Tickets<br>✓ Standard draw<br>✓ Demo wallet</div><button class="btn" onclick="buy('Standard')">Select</button></div>
-<div class="ticket"><div class="mini">PREMIUM</div><strong>Premium</strong><div class="price">50 ብር</div><div class="features">✓ 7 Tickets<br>✓ Premium draw<br>✓ Demo wallet</div><button class="btn" onclick="buy('Premium')">Select</button></div>
-</div></div></section>
+  <section id="ticket" class="card" style="display:none">
+    <h2>🎟️ ቲኬት ፍጠር</h2>
+    <input id="name" placeholder="ሙሉ ስምዎን ያስገቡ">
+    <button onclick="makeTicket()">ቲኬት ፍጠር</button>
+    <div id="ticketOut"></div>
+  </section>
 
-<section id="account" class="section"><div class="wrap"><h2>👤 Account</h2><div class="stats"><div class="stat"><div class="mini">BALANCE</div><b>1,250 ብር</b></div><div class="stat"><div class="mini">MY TICKETS</div><b>12</b></div><div class="stat"><div class="mini">WINS</div><b>3</b></div></div></div></section>
+  <section id="check" class="card" style="display:none">
+    <h2>🔎 ቲኬት ፈልግ</h2>
+    <input id="search" placeholder="የቲኬት ቁጥር ያስገቡ">
+    <button onclick="checkTicket()">ፈልግ</button>
+    <div id="checkOut"></div>
+  </section>
 
-<section id="winners" class="section"><div class="wrap"><h2>🏆 Recent Winners</h2><div class="card"><table class="table"><tr><th>Name</th><th>Prize</th><th>Date</th></tr><tr><td>Abebe K.</td><td>5,000 ብር</td><td>Demo</td></tr><tr><td>Hana D.</td><td>2,500 ብር</td><td>Demo</td></tr><tr><td>Samuel T.</td><td>1,000 ብር</td><td>Demo</td></tr></table></div></div></section>
+  <section id="media" class="card" style="display:none">
+    <h2>📷 ፎቶ እና ቪዲዮ ማዕከል</h2>
+    <div class="media-box">
+      <h3>የቀጥታ ምስል ማቀናበሪያ</h3>
+      <input type="file" accept="image/*" capture="environment" onchange="loadPhoto(event)">
+      <img id="photo" alt="የተመረጠ ፎቶ">
+    </div>
+    <div class="media-box">
+      <h3>ቪዲዮ ማሳያ</h3>
+      <iframe width="100%" height="220" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen style="border-radius:10px;"></iframe>
+    </div>
+  </section>
 
-<section class="section"><div class="wrap"><div class="card"><h2>💳 Deposit & Withdraw</h2><p style="color:#aebed0">Telebirr / Bank integration placeholders are ready for a future licensed backend.</p><button class="btn" onclick="alert('Demo only — payment provider not connected')">Open Wallet</button></div></div></section>
+  <section class="card">
+    <h3>⚠️ ማስታወሻ</h3>
+    <p class="small">ማንኛውም ጥያቄ ካለዎት ድረ-ገጹን በመጠቀም መዝናናት ይችላሉ።</p>
+  </section>
+</main>
 
-<footer class="footer"><div class="wrap">© 2026 ኤፍሬም እንግዳ ሎተሪ · Demo website</div></footer>
 <script>
-function buy(name){alert(name+" ticket selected. Demo only — no real payment.");}
+let tickets=JSON.parse(localStorage.getItem('tickets')||'{}');
+function show(id){['home','ticket','check','media'].forEach(x=>document.getElementById(x).style.display=x===id?'block':'none')}
+function makeTicket(){let n=document.getElementById('name').value.trim();if(!n)return alert('እባክዎ ስም ያስገቡ');let no=Math.floor(100000+Math.random()*900000);tickets[no]=n;localStorage.setItem('tickets',JSON.stringify(tickets));document.getElementById('ticketOut').innerHTML='<div class="ticket">#'+no+'</div><p>ባለቤት፦ '+n+'</p>'}
+function checkTicket(){let no=document.getElementById('search').value.trim();document.getElementById('checkOut').innerHTML=tickets[no]?'<h3>✅ ተገኝቷል</h3><p>ባለቤት፦ '+tickets[no]+'</p>':'<h3>❌ አልተገኘም</h3>'}
+function loadPhoto(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{document.getElementById('photo').src=r.result;localStorage.setItem('photo',r.result)};r.readAsDataURL(f)}
+if(localStorage.getItem('photo'))document.getElementById('photo').src=localStorage.getItem('photo');
 </script>
-</body></html>
+</body>
+</html>
