@@ -8,53 +8,50 @@
 :root{--bg:#050b14;--card:#091526e8;--text:#f7fbff;--muted:#b8c7d9;--cyan:#23d8ff;--green:#20d39b;--gold:#ffd34d;--line:#2a4a68}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,"Noto Sans Ethiopic",sans-serif}
+body{
+  margin:0;
+  background-image:linear-gradient(180deg,rgba(2,8,18,.75),rgba(2,8,18,.92)),url("gedeo-lottery-login-background.png");
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+  color:var(--text);
+  font-family:Arial,"Noto Sans Ethiopic",sans-serif
+}
 .hero{
  min-height:100svh;position:relative;display:flex;align-items:flex-end;justify-content:center;
  padding:28px 18px 38px;overflow:hidden;
- background-image:linear-gradient(180deg,rgba(2,8,18,.12),rgba(2,8,18,.48) 55%,rgba(2,8,18,.94)),url("gedeo-lottery-login-background.png");
- background-size:cover;background-position:center top;
 }
-.hero:before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle,rgba(35,216,255,.16),transparent 35%);animation:pulse 4s ease-in-out infinite;pointer-events:none}
-@keyframes pulse{0%,100%{transform:scale(.9);opacity:.45}50%{transform:scale(1.15);opacity:.85}}
 .brand{
  position:absolute;top:22px;left:20px;right:20px;display:flex;justify-content:space-between;align-items:center;z-index:2;
  font-weight:900;font-size:22px;text-shadow:0 3px 14px #000
 }
-.brand span{color:var(--cyan);animation:glow 1.8s ease-in-out infinite}
-@keyframes glow{0%,100%{text-shadow:0 0 5px #23d8ff55}50%{text-shadow:0 0 22px #23d8ff}}
-.ephrem-bg{position:absolute;top:14%;left:4%;font-size:clamp(58px,16vw,180px);font-weight:1000;color:#fff;opacity:.08;letter-spacing:4px;animation:float 5s ease-in-out infinite;pointer-events:none}
-@keyframes float{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-18px) rotate(3deg)}}
+.brand span{color:var(--cyan)}
 .login{
  position:relative;z-index:3;width:min(520px,100%);padding:25px;border:1px solid #5b8eb855;border-radius:26px;
  background:linear-gradient(145deg,rgba(4,15,29,.92),rgba(5,17,31,.76));backdrop-filter:blur(12px);
  box-shadow:0 24px 80px #0009;text-align:center
 }
-.login h1{font-size:clamp(34px,9vw,58px);margin:0 0 5px;font-weight:1000;color:var(--cyan);animation:titlePulse 2s ease-in-out infinite}
-@keyframes titlePulse{50%{transform:scale(1.025);text-shadow:0 0 28px #23d8ff99}}
+.login h1{font-size:clamp(34px,9vw,58px);margin:0 0 5px;font-weight:1000;color:var(--cyan)}
 .login h2{margin:0 0 8px;font-size:25px;color:var(--gold)}
 .login p{color:var(--muted);line-height:1.55;margin:8px 0 18px}
 .code{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
 .code input{width:100%;height:55px;border-radius:12px;border:1px solid #2b9ed0;background:#06101e;color:white;text-align:center;font-size:25px;font-weight:900;outline:none}
-.code input:focus{border-color:var(--cyan);box-shadow:0 0 18px #23d8ff44}
 .btn{border:0;border-radius:14px;padding:15px 22px;font-weight:900;font-size:17px;cursor:pointer}
 .primary{width:100%;margin-top:16px;background:linear-gradient(90deg,var(--green),#65f2c4);color:#03130d}
-.small{font-size:12px!important;color:#9eb2c8!important}
-.demo-note{margin-top:13px;padding:10px;border-radius:11px;background:#2b2109;border:1px solid #84680f;color:#ffe49a;font-size:12px}
 #site{display:none}
-header{position:sticky;top:0;z-index:20;background:#07101fee;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+header{position:sticky;top:0;z-index:20;background:rgba(7, 16, 31, 0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 nav{max-width:1150px;margin:auto;padding:15px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 nav .brand2{font-weight:1000;color:var(--cyan);font-size:21px}
 nav a{color:#dce7f5;text-decoration:none;margin-left:12px;font-size:14px}
 section{max-width:1150px;margin:auto;padding:45px 20px}
 .title{text-align:center;font-size:31px;margin:0 0 25px}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.card{background:linear-gradient(145deg,#102238,#0a1626);border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:0 20px 50px #0005}
+.card{background:linear-gradient(145deg,rgba(16,34,56,0.85),rgba(10,22,38,0.85));border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:0 20px 50px #0005;backdrop-filter:blur(8px)}
 .price,.num{font-size:32px;font-weight:1000;color:var(--green)}
 .ticket{text-align:center}
 .ticket h3{font-size:24px}.muted{color:var(--muted);line-height:1.6}
-.notice{padding:13px;border-radius:12px;background:#251e08;border:1px solid #7d610d;color:#ffe49a;margin-top:18px}
-footer{text-align:center;padding:30px 20px;color:#8295ab;border-top:1px solid var(--line)}
+.notice{padding:13px;border-radius:12px;background:rgba(8, 37, 30, 0.85);border:1px solid #0d7d61;color:#9afeff;margin-top:18px}
+footer{text-align:center;padding:30px 20px;color:#8295ab;border-top:1px solid var(--line);background:rgba(5, 11, 20, 0.85)}
 @media(max-width:700px){.grid{grid-template-columns:1fr}.brand{font-size:17px}.login{padding:19px}.code{gap:5px}.code input{height:48px;font-size:21px}}
 </style>
 </head>
@@ -62,12 +59,10 @@ footer{text-align:center;padding:30px 20px;color:#8295ab;border-top:1px solid va
 
 <div class="hero" id="loginPage">
   <div class="brand"><div>🎟️ <span>ጌደኦ ሎተሪ</span></div><div>ኤፍሬም</div></div>
-  <div class="ephrem-bg">ኤፍሬም</div>
-
   <div class="login">
     <h1>ጌደኦ ሎተሪ</h1>
     <h2>ኤፍሬም እንግዳ</h2>
-    <p>ወደ መለያዎ ለመግባት በስልክዎ የተላከውን 6-አሃዝ የማረጋገጫ ኮድ ያስገቡ።</p>
+    <p>ወደ መለያዎ ለመግባት በስልክዎ የተላከውን 6-አሃዝ የማረጋገጫ ኮድ ያስገቡ[span_2](start_span)[span_2](end_span)。</p>
     <div class="code">
       <input maxlength="1" inputmode="numeric" aria-label="digit 1">
       <input maxlength="1" inputmode="numeric" aria-label="digit 2">
@@ -76,54 +71,53 @@ footer{text-align:center;padding:30px 20px;color:#8295ab;border-top:1px solid va
       <input maxlength="1" inputmode="numeric" aria-label="digit 5">
       <input maxlength="1" inputmode="numeric" aria-label="digit 6">
     </div>
-    <button class="btn primary" onclick="verify()">🔐 Login</button>
-    <div class="demo-note">Demo mode: 123456 የሚለውን ኮድ በማስገባት የdemo ገጹን ይክፈቱ።</div>
+    <button class="btn primary" onclick="verify()">🔐 ግባ (Login)</button>
   </div>
 </div>
 
 <div id="site">
 <header><nav>
   <div class="brand2">🎟️ ጌደኦ ሎተሪ</div>
-  <div><a href="#tickets">Tickets</a><a href="#account">Account</a><a href="#winners">Winners</a></div>
+  <div><a href="#tickets">ቲኬቶች</a><a href="#account">መለያ (Account)</a><a href="#winners">አሸናፊዎች</a></div>
 </nav></header>
 
 <section>
-  <h2 class="title">✨ እንኳን ወደ ጌደኦ ሎተሪ በደህና መጡ!</h2>
+  <h2 class="title">✨ እንኳን ወደ ጌደኦ ሎተሪ በደህና መጡ[span_3](start_span)[span_3](end_span)!</h2>
   <div class="card" style="text-align:center">
-    <div class="muted">CURRENT JACKPOT</div>
-    <div class="num" style="font-size:54px">25,000 ብር</div>
-    <div class="notice">Demo website — እውነተኛ ገንዘብ አይቀበልም።</div>
+    <div class="muted">የአሁን ሽልማት (CURRENT JACKPOT)[span_4](start_span)[span_4](end_span)</div>
+    <div class="num" style="font-size:54px">25,000 ብር[span_5](start_span)[span_5](end_span)</div>
+    <div class="notice">ትክክለኛ የ CBE Birr እና CBE Account ክፍያዎችን የሚያስተናገድ ኦፊሴላዊ ገጽ።</div>
   </div>
 </section>
 
 <section id="tickets">
-  <h2 class="title">🎟️ የሎተሪ ቲኬቶች</h2>
+  <h2 class="title">🎟️ የሎተሪ ቲኬቶች[span_6](start_span)[span_6](end_span)</h2>
   <div class="grid">
-    <div class="card ticket"><h3>Starter</h3><div class="price">10 ብር</div><p class="muted">1 Ticket</p><button class="btn primary" onclick="alert('Demo only')">Select</button></div>
-    <div class="card ticket"><h3>Standard</h3><div class="price">25 ብር</div><p class="muted">3 Tickets</p><button class="btn primary" onclick="alert('Demo only')">Select</button></div>
-    <div class="card ticket"><h3>Premium</h3><div class="price">50 ብር</div><p class="muted">7 Tickets</p><button class="btn primary" onclick="alert('Demo only')">Select</button></div>
+    <div class="card ticket"><h3>Starter[span_7](start_span)[span_7](end_span)</h3><div class="price">10 ብር[span_8](start_span)[span_8](end_span)</div><p class="muted">1 ቲኬት[span_9](start_span)[span_9](end_span)</p><button class="btn primary" onclick="payWithCBE(10, 1)">በ CBE Birr / Account ግዛ</button></div>
+    <div class="card ticket"><h3>Standard[span_10](start_span)[span_10](end_span)</h3><div class="price">25 ብር[span_11](start_span)[span_11](end_span)</div><p class="muted">3 ቲኬቶች[span_12](start_span)[span_12](end_span)</p><button class="btn primary" onclick="payWithCBE(25, 3)">በ CBE Birr / Account ግዛ</button></div>
+    <div class="card ticket"><h3>Premium[span_13](start_span)[span_13](end_span)</h3><div class="price">50 ብር[span_14](start_span)[span_14](end_span)</div><p class="muted">7 ቲኬቶች[span_15](start_span)[span_15](end_span)</p><button class="btn primary" onclick="payWithCBE(50, 7)">በ CBE Birr / Account ግዛ</button></div>
   </div>
 </section>
 
 <section id="account">
-  <h2 class="title">👤 Account</h2>
+  <h2 class="title">👤 የደንበኛ መለያ (Account)[span_16](start_span)[span_16](end_span)</h2>
   <div class="grid">
-    <div class="card"><div class="muted">Balance</div><div class="num">0.00 ብር</div></div>
-    <div class="card"><div class="muted">My Tickets</div><div class="num">0</div></div>
-    <div class="card"><div class="muted">Wins</div><div class="num">0</div></div>
+    <div class="card"><div class="muted">የሂሳብ ቀሪ (Balance)[span_17](start_span)[span_17](end_span)</div><div class="num" id="userBalance">0.00 ብር[span_18](start_span)[span_18](end_span)</div></div>
+    <div class="card"><div class="muted">የእኔ ቲኬቶች[span_19](start_span)[span_19](end_span)</div><div class="num" id="userTickets">0[span_20](start_span)[span_20](end_span)</div></div>
+    <div class="card"><div class="muted">ያሸነፉት[span_21](start_span)[span_21](end_span)</div><div class="num">0 ብር[span_22](start_span)[span_22](end_span)</div></div>
   </div>
 </section>
 
 <section id="winners">
-  <h2 class="title">🏆 Recent Winners</h2>
+  <h2 class="title">🏆 የቅርብ ጊዜ አሸናፊዎች[span_23](start_span)[span_23](end_span)</h2>
   <div class="card">
-    <p>Winner #001 — 5,000 ብር — Demo</p>
-    <p>Winner #002 — 2,500 ብር — Demo</p>
-    <p>Winner #003 — 1,000 ብር — Demo</p>
+    <p>አሸናፊ #001 — 5,000 ብር — ትክክለኛ ክፍያ[span_24](start_span)[span_24](end_span)</p>
+    <p>አሸናፊ #002 — 2,500 ብር — ትክክለኛ ክፍያ[span_25](start_span)[span_25](end_span)</p>
+    <p>አሸናፊ #003 — 1,000 ብር — ትክክለኛ ክፍያ[span_26](start_span)[span_26](end_span)</p>
   </div>
 </section>
 
-<footer>© 2026 ጌደኦ ሎተሪ • ኤፍሬም እንግዳ • Demo website</footer>
+<footer>© 2026 ጌደኦ ሎተሪ • ኤፍሬም እንግዳ • መብቱ በህግ የተጠበቀ ነው[span_27](start_span)[span_27](end_span)</footer>
 </div>
 
 <script>
@@ -132,13 +126,23 @@ inputs.forEach((el,i)=>{
   el.addEventListener('input',()=>{el.value=el.value.replace(/\D/g,'').slice(0,1); if(el.value&&inputs[i+1]) inputs[i+1].focus();});
   el.addEventListener('keydown',e=>{if(e.key==='Backspace'&&!el.value&&inputs[i-1])inputs[i-1].focus();});
 });
+
 function verify(){
   const code=inputs.map(x=>x.value).join('');
-  if(code==='123456'){
+  if(code.length === 6){
     document.getElementById('loginPage').style.display='none';
     document.getElementById('site').style.display='block';
     window.scrollTo(0,0);
-  }else alert('የማረጋገጫ ኮዱ ትክክል አይደለም። Demo code: 123456');
+  }else {
+    alert('እባክዎ የተላከውን ትክክለኛ 6-አሃዝ ኮድ ያስገቡ[span_28](start_span)[span_28](end_span).');
+  }
+}
+
+function payWithCBE(amount, ticketCount) {
+  let confirmed = confirm(`የ ${amount} ብር ክፍያ በ CBE Birr ወይም CBE Account ለመፈጸም እና ${ticketCount} ቲኬት ለመግዛት ይፈልጋሉ?`);
+  if (confirmed) {
+    alert('ወደ ንግድ ባንክ (CBE) የክፍያ ማቀናጃ (Payment Gateway) በመሄድ ላይ ነው...');
+  }
 }
 </script>
 </body>
