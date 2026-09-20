@@ -130,6 +130,23 @@ footer{text-align:center;padding:30px 20px;color:#71839a;border-top:1px solid va
   margin-top:20px;
 }
 
+.modal{
+  display:none;position:fixed;inset:0;background:rgba(3,19,30,.8);z-index:100;
+  align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px);
+}
+.modal-content{
+  width:min(450px,100%);background:#0b2142;border:1px solid var(--cyan);border-radius:22px;
+  padding:25px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.5);
+}
+.modal-content h3{color:var(--cyan);margin-top:0;font-size:24px}
+.modal-content p{color:var(--muted);font-size:14px;line-height:1.5}
+.copy-box{
+  background:#06101e;border:1px solid var(--line);border-radius:12px;padding:12px;margin:15px 0;
+  display:flex;justify-content:space-between;align-items:center;font-weight:bold;color:var(--gold);
+}
+.copy-btn{background:var(--cyan);color:#03130d;border:0;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:900}
+.close-btn{background:#e75b5b;color:#fff;border:0;width:100%;padding:12px;border-radius:12px;font-weight:900;cursor:pointer;margin-top:10px}
+
 .thank-you{
   display:none;
   margin-top:16px;
@@ -137,7 +154,7 @@ footer{text-align:center;padding:30px 20px;color:#71839a;border-top:1px solid va
   border-radius:14px;
   background:#079bd3;
   color:#ffffff;
-  font-size:22px;
+  font-size:18px;
   font-weight:900;
   text-align:center;
   animation:thankYouIn .55s ease both;
@@ -188,11 +205,11 @@ footer{text-align:center;padding:30px 20px;color:#71839a;border-top:1px solid va
 </nav></header>
 
 <section>
-  <h2 class="title">✨ እንኳን ወደ ጌደኦ ሎተሪ በደህና መጡ!</h2>
+  <h2 class="title" style="background:linear-gradient(90deg,#23d8ff,#19c995,#ffd34d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 5px 25px rgba(35,216,255,0.3);">🔥 ትልቅ እድል ከኤፍሬም እንግዳ ጌደኦ ሎተሪ ጋር! 🌟</h2>
   <div class="card" style="text-align:center">
     <div class="muted">CURRENT JACKPOT</div>
     <div class="num" style="font-size:54px">25,000 ብር</div>
-    <div class="notice"></div>
+    <div class="notice">ዕድልዎን ዛሬውኑ ይሞክሩ፤ በሚሊዮኖች የሚቆጠሩ አሸናፊዎች ከኛ ጋር አሉ። አሁን ከ 3 በላይ ቲኬቶችን መምረጥ እና ትልቅ ሽልማት ባለቤት መሆን ይችላሉ!</div>
   </div>
 </section>
 
@@ -201,7 +218,7 @@ footer{text-align:center;padding:30px 20px;color:#71839a;border-top:1px solid va
 
   <div class="card ticket-selector">
     <p class="muted" style="text-align:center">
-      1–100 ያሉትን ቲኬቶች ይምረጡ። እያንዳንዱ ቲኬት 100 ብር ነው።
+      ከ1–100 ያሉትን የሎተሪ ቲኬቶች ከፍላጎትዎ ልክ ይምረጡ (ከ 3 በላይ መምረጥ ይቻላል)። እያንዳንዱ ቲኬት 100 ብር ነው።
     </p>
     <div class="grid" style="margin-top:15px">
       <div class="card" style="padding:18px;text-align:center">
@@ -215,7 +232,14 @@ footer{text-align:center;padding:30px 20px;color:#71839a;border-top:1px solid va
     </div>
 
     <div id="selectedInfo" class="notice" style="text-align:center;background:#0b2142;border:1px solid #29c7ff;color:#ffffff;font-size:20px;font-weight:900">
-      እስካሁን ምንም ቲኬት አልተቆረጠም። እድለኛ ለመሆን አንዱን ይምረጡ።
+      እስካሁን ምንም ቲኬት አልተቆረጠም። እድለኛ ለመሆን የሚፈልጉትን ያህል ይምረጡ።
+    </div>
+
+    <div style="margin-top:15px;background:#081a35;padding:15px;border-radius:14px;border:1px solid var(--line);text-align:center">
+      <p class="muted" style="margin:0 0 8px">🔍 ቲኬትዎ አሸናፊ መሆኑን ይፈትሹ</p>
+      <input type="number" id="checkInput" placeholder="የቲኬት ቁጥር ያስገቡ (1-100)" style="padding:10px;border-radius:8px;border:1px solid var(--cyan);background:#06101e;color:#fff;width:220px;text-align:center;font-weight:bold;outline:none">
+      <button class="btn" style="background:var(--cyan);color:#03130d;padding:10px 15px;margin-left:5px" onclick="checkWinner()">ይፈትሹ</button>
+      <div id="checkResult" style="margin-top:10px;font-weight:bold"></div>
     </div>
 
     <div id="winningNumbers" class="notice" style="display:none;text-align:center;font-size:20px;font-weight:900">
@@ -228,16 +252,42 @@ footer{text-align:center;padding:30px 20px;color:#71839a;border-top:1px solid va
     <div class="ticket-actions">
       <button class="btn primary" onclick="startTicket()">ስልክ ቁጥር</button>
       <button class="btn pay" onclick="payTicket()">እዚህ ይክፈሉ</button>
-      <button class="btn save" onclick="saveTicket()">Save</button>
+      <button class="btn save" onclick="saveTicket()">Save & Telegram</button>
       <button class="btn" style="grid-column:1/-1;background:linear-gradient(90deg,#ffd34d,#fff0a8);color:#3b2b00" onclick="drawWinners()">🏆 የወጡ ቁጥሮችን አውጣ</button>
     </div>
 
     <div id="ticketStatus" class="notice" style="display:none;text-align:center"></div>
     <div id="thankYou" class="thank-you" aria-live="polite">
-      ቲኬቱን ስለገዙ እናመሰግናለን።
+      ቲኬቶችዎ ተቀምጠዋል! ወደ ቴሌግራም በመሄድ ላይ...
     </div>
   </div>
 </section>
+
+<div id="payModal" class="modal">
+  <div class="modal-content">
+    <h3>💳 የክፍያ መረጃ</h3>
+    <p>እባክዎ ከታች ባለው የንግድ ባንክ (CBE) አካውንት ወይም በ CBE Birr ክፍያውን ይፈጽሙ፡</p>
+    
+    <div class="copy-box">
+      <div>
+        <div style="font-size:12px;color:var(--muted)">የኢትዮጵያ ንግድ ባንክ (CBE)</div>
+        <span id="cbeAcc">10000284732212</span>
+      </div>
+      <button class="copy-button copy-btn" onclick="copyText('10000284732212')">ኮፒ</button>
+    </div>
+
+    <div class="copy-box">
+      <div>
+        <div style="font-size:12px;color:var(--muted)">CBE Birr / ስልክ ቁጥር</div>
+        <span id="cbePhone">0990176587</span>
+      </div>
+      <button class="copy-button copy-btn" onclick="copyText('0990176587')">ኮፒ</button>
+    </div>
+
+    <p style="font-size:13px;color:var(--gold)">የሂሳብ ስም፦ Efrem Engida Kunbato</p>
+    <button class="close-btn" onclick="closePayModal()">ዝጋ / ጨርሻለሁ</button>
+  </div>
+</div>
 
 <section id="account">
   <h2 class="title">👤 Account</h2>
@@ -286,6 +336,7 @@ function verify(){
 
 const selectedTickets = new Set();
 let phoneNumber = '';
+let winningList = [];
 
 function buildTickets(){
   const grid=document.getElementById('ticketGrid');
@@ -305,10 +356,7 @@ function toggleTicket(n,button){
     selectedTickets.delete(n);
     button.classList.remove('selected');
   }else{
-    if(selectedTickets.size>=3){
-      alert('እስከ 3 ቲኬቶች ብቻ መምረጥ ይችላሉ።');
-      return;
-    }
+    // ከ 3 በላይ ቲኬቶችን መምረጥ እንዲቻል ገደቡ ተነስተዋል
     selectedTickets.add(n);
     button.classList.add('selected');
   }
@@ -319,8 +367,8 @@ function updateSelectedInfo(){
   const info=document.getElementById('selectedInfo');
   const nums=[...selectedTickets].sort((a,b)=>a-b);
   info.textContent=nums.length
-    ? 'የመረጡት ቲኬቶች: '+nums.join(', ')+' — '+nums.length+'/3'
-    : 'እስካሁን ምንም ቲኬት አልተቆረጠም። እድለኛ ለመሆን አንዱን ይምረጡ።';
+    ? 'የመረጡት ቲኬቶች: '+nums.join(', ')+' — ጠቅላላ: '+nums.length+' ቲኬት ('+(nums.length*100)+' ብር)'
+    : 'እስካሁን ምንም ቲኬት አልተቆረጠም። እድለኛ ለመሆን የሚፈልጉትን ያህል ይምረጡ።';
 }
 
 function startTicket(){
@@ -335,7 +383,7 @@ function startTicket(){
     return;
   }
   phoneNumber=phone.trim();
-  showStatus('ስልክ ቁጥር ተመዝግቧል። አሁን ወደ 2ኛው ደረጃ በመሄድ ክፍያ ያድርጉ።');
+  showStatus('ስልክ ቁጥር ተመዝግቧል። አሁን ወደ ክፍያ ደረጃ በመሄድ ክፍያ ያድርጉ።');
 }
 
 function payTicket(){
@@ -344,16 +392,21 @@ function payTicket(){
     return;
   }
   if(!phoneNumber){
-    alert('መጀመሪያ 1ኛውን ቁልፍ ተጭነው ስልክ ቁጥር ያስገቡ።');
+    alert('መጀመሪያ ስልክ ቁጥር ያስገቡ።');
     return;
   }
-  const amount=selectedTickets.size*100;
-  
-  // የንግድ ባንክ (CBE) እና የ CBE Birr ትክክለኛ መረጃዎ
-  const cbeAccountInfo = "የኢትዮጵያ ንግድ ባንክ (CBE) አካውንት፦ 10000284732212\nየሒሳብ ስም፦ Efrem Engida Kunbato\nCBE Birr ስልክ ቁጥር፦ 0990176587";
-  
-  const ok=confirm('የቲኬት ክፍያ: '+amount+' ብር\nቲኬቶች: '+[...selectedTickets].sort((a,b)=>a-b).join(', ')+'\n\n-- የክፍያ መረጃ --\n'+cbeAccountInfo+'\n\nክፍያውን ከፈጸሙ በኋላ OK ይጫኑ።');
-  if(ok) showStatus(amount+' ብር ክፍያ ጥያቄ ተመዝግቧል። የባንክ ማስተላለፍዎ ሲረጋገጥ ቲኬትዎ ጸድቆ ይደርሰዎታል።');
+  document.getElementById('payModal').style.display = 'flex';
+}
+
+function closePayModal(){
+  document.getElementById('payModal').style.display = 'none';
+  showStatus('ክፍያውን ፈጽመው ከጨረሱ በኋላ "Save & Telegram" የሚለውን ቁልፍ ይጫኑ።');
+}
+
+function copyText(text){
+  navigator.clipboard.writeText(text).then(()=>{
+    alert('ተገለብጧል: ' + text);
+  });
 }
 
 function saveTicket(){
@@ -365,21 +418,30 @@ function saveTicket(){
     alert('መጀመሪያ ስልክ ቁጥር ያስገቡ።');
     return;
   }
+  const ticketsArr = [...selectedTickets].sort((a,b)=>a-b);
   const data={
-    tickets:[...selectedTickets].sort((a,b)=>a-b),
-    phone:phoneNumber,
-    savedAt:new Date().toLocaleString()
+    tickets: ticketsArr,
+    phone: phoneNumber,
+    savedAt: new Date().toLocaleString()
   };
   localStorage.setItem('efremLotteryTicket',JSON.stringify(data));
   showStatus('ቲኬቶች '+data.tickets.join(', ')+' በስልክ '+data.phone+' ተቀምጠዋል።');
+  
   const thanks=document.getElementById('thankYou');
   thanks.style.display='block';
+
+  setTimeout(()=>{
+    const text = encodeURIComponent(`ሰላም! ሎተሪ ቆርጫለሁ።\nስልክ: ${phoneNumber}\nቲኬቶች: ${ticketsArr.join(', ')}\nጠቅላላ ብር: ${ticketsArr.length * 100} ብር`);
+    window.location.href = `https://t.me/share/url?url=&text=${text}`;
+  }, 1500);
 }
 
 function drawWinners(){
   const one=Math.floor(Math.random()*100)+1;
   let two=Math.floor(Math.random()*100)+1;
   while(two===one) two=Math.floor(Math.random()*100)+1;
+
+  winningList = [one, two];
 
   const box=document.getElementById('winningNumbers');
   const a=document.getElementById('winnerOne');
@@ -391,6 +453,28 @@ function drawWinners(){
 
   setTimeout(()=>a.textContent=one,700);
   setTimeout(()=>b.textContent=two,1400);
+}
+
+function checkWinner(){
+  const val = parseInt(document.getElementById('checkInput').value);
+  const resBox = document.getElementById('checkResult');
+  if(!val || isNaN(val)){
+    resBox.style.color = '#ffd34d';
+    resBox.textContent = 'እባክዎ ትክክለኛ የቲኬት ቁጥር ያስገቡ።';
+    return;
+  }
+  if(winningList.length === 0){
+    resBox.style.color = '#ffd34d';
+    resBox.textContent = 'እስካሁን ዕጣ አልወጣም።';
+    return;
+  }
+  if(winningList.includes(val)){
+    resBox.style.color = '#19c995';
+    resBox.textContent = `🎉 እንኳን ደስ አለዎት! ቲኬት ቁጥር ${val} አሸናፊ ሆኗል!`;
+  } else {
+    resBox.style.color = '#ff6b6b';
+    resBox.textContent = `😔 አሳዛኝ ነው፣ ቲኬት ቁጥር ${val} አሸናፊ አይደለም። መልካም እድል!`;
+  }
 }
 
 function showStatus(message){
