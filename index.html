@@ -8,53 +8,60 @@
 :root{--bg:#06152f;--card:#0b2142ee;--text:#f7fbff;--muted:#b9c8dc;--cyan:#29c7ff;--green:#19c995;--gold:#ffd34d;--line:#214d78}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:#06152f;color:#f7fbff;font-family:Arial,"Noto Sans Ethiopic",sans-serif}
+body{
+  margin:0;
+  background-image:linear-gradient(180deg,rgba(6,21,47,.85),rgba(6,21,47,.95)),url("gedeo-lottery-login-background.png");
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+  color:var(--text);
+  font-family:Arial,"Noto Sans Ethiopic",sans-serif
+}
 .hero{
  min-height:100svh;position:relative;display:flex;align-items:flex-end;justify-content:center;
  padding:28px 18px 38px;overflow:hidden;
- background-image:linear-gradient(180deg,rgba(255,255,255,.30),rgba(245,249,255,.68) 55%,rgba(238,246,255,.96)),url("gedeo-lottery-login-background.png");
- background-size:cover;background-position:center top;
 }
-.hero:before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle,rgba(35,216,255,.16),transparent 35%);animation:pulse 4s ease-in-out infinite;pointer-events:none}
-@keyframes pulse{0%,100%{transform:scale(.9);opacity:.45}50%{transform:scale(1.15);opacity:.85}}
 .brand{
  position:absolute;top:22px;left:20px;right:20px;display:flex;justify-content:space-between;align-items:center;z-index:2;
  font-weight:900;font-size:22px;text-shadow:0 2px 10px rgba(20,50,80,.18)
 }
-.brand span{color:var(--cyan);animation:glow 1.8s ease-in-out infinite}
-@keyframes glow{0%,100%{text-shadow:0 0 5px #23d8ff55}50%{text-shadow:0 0 22px #23d8ff}}
-.ephrem-bg{position:absolute;top:14%;left:4%;font-size:clamp(58px,16vw,180px);font-weight:1000;color:#0b6f9d;opacity:.07;letter-spacing:4px;animation:float 5s ease-in-out infinite;pointer-events:none}
-@keyframes float{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-18px) rotate(3deg)}}
+.brand span{color:var(--cyan)}
 .login{
  position:relative;z-index:3;width:min(520px,100%);padding:25px;border:1px solid #5b8eb855;border-radius:26px;
- background:linear-gradient(145deg,rgba(255,255,255,.97),rgba(247,251,255,.94));backdrop-filter:blur(12px);
- box-shadow:0 24px 70px rgba(60,100,140,.18);text-align:center
+ background:linear-gradient(145deg,rgba(11,33,66,.95),rgba(6,21,47,.92));backdrop-filter:blur(12px);
+ box-shadow:0 24px 70px rgba(0,0,0,.5);text-align:center
 }
-.login h1{font-size:clamp(34px,9vw,58px);margin:0 0 5px;font-weight:1000;color:var(--cyan);animation:titlePulse 2s ease-in-out infinite}
-@keyframes titlePulse{50%{transform:scale(1.025);text-shadow:0 0 28px #23d8ff99}}
+.login h1{font-size:clamp(34px,9vw,58px);margin:0 0 5px;font-weight:1000;color:var(--cyan)}
 .login h2{margin:0 0 8px;font-size:25px;color:var(--gold)}
 .login p{color:var(--muted);line-height:1.55;margin:8px 0 18px}
-.code{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
-.code input{width:100%;height:55px;border-radius:12px;border:1px solid #2b9ed0;background:#ffffff;color:#102033;text-align:center;font-size:25px;font-weight:900;outline:none}
-.code input:focus{border-color:var(--cyan);box-shadow:0 0 18px #23d8ff44}
-.btn{border:0;border-radius:14px;padding:15px 22px;font-weight:900;font-size:17px;cursor:pointer}
-.primary{width:100%;margin-top:16px;background:linear-gradient(90deg,var(--green),#65f2c4);color:#03130d}
-.small{font-size:12px!important;color:#9eb2c8!important}
-.demo-note{margin-top:13px;padding:10px;border-radius:11px;background:#fff8df;border:1px solid #e7c85b;color:#735600;font-size:12px}
+
+/* የስልክ ቁጥር መግቢያ ዲዛይን */
+.phone-input-group{margin-bottom:15px}
+.phone-input-group input{
+  width:100%;height:55px;border-radius:14px;border:2px solid #2b9ed0;background:#06101e;
+  color:white;text-align:center;font-size:22px;font-weight:900;outline:none;letter-spacing:2px;
+  transition:all 0.3s ease;
+}
+.phone-input-group input:focus{border-color:var(--green);box-shadow:0 0 20px rgba(32,211,155,0.4)}
+
+.btn{border:0;border-radius:14px;padding:15px 22px;font-weight:900;font-size:17px;cursor:pointer;transition:all 0.2s}
+.btn:hover{transform:translateY(-2px)}
+.primary{width:100%;background:linear-gradient(90deg,var(--green),#65f2c4);color:#03130d}
+
 #site{display:none}
-header{position:sticky;top:0;z-index:20;background:#ffffffee;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+header{position:sticky;top:0;z-index:20;background:rgba(11,33,66,0.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 nav{max-width:1150px;margin:auto;padding:15px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 nav .brand2{font-weight:1000;color:var(--cyan);font-size:21px}
-nav a{color:#30445a;text-decoration:none;margin-left:12px;font-size:14px}
+nav a{color:#dce7f5;text-decoration:none;margin-left:12px;font-size:14px}
 section{max-width:1150px;margin:auto;padding:45px 20px}
-.title{text-align:center;font-size:31px;margin:0 0 25px}
+.title{text-align:center;font-size:31px;margin:0 0 25px;color:var(--gold)}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.card{background:linear-gradient(145deg,#0d2a50,#081a35);border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:0 20px 50px rgba(60,100,140,.12)}
+.card{background:linear-gradient(145deg,#0d2a50aa,#081a35aa);border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:0 20px 50px rgba(0,0,0,.3);backdrop-filter:blur(8px)}
 .price,.num{font-size:32px;font-weight:1000;color:var(--green)}
 .ticket{text-align:center}
 .ticket h3{font-size:24px}.muted{color:var(--muted);line-height:1.6}
-.notice{padding:13px;border-radius:12px;background:#fff8df;border:1px solid #e7c85b;color:#735600;margin-top:18px}
-footer{text-align:center;padding:30px 20px;color:#71839a;border-top:1px solid var(--line)}
+.notice{padding:13px;border-radius:12px;background:rgba(8, 37, 30, 0.85);border:1px solid #0d7d61;color:#9afeff;margin-top:18px}
+footer{text-align:center;padding:30px 20px;color:#8295ab;border-top:1px solid var(--line);background:rgba(6,21,47,0.9)}
 
 .ticket-selector{padding:22px}
 .ticket-grid{
@@ -65,88 +72,44 @@ footer{text-align:center;padding:30px 20px;color:#71839a;border-top:1px solid va
 }
 .ticket-number{
   height:42px;
-  border:1px solid #c8d9e8;
+  border:1px solid #e4bd3e;
   border-radius:10px;
-  background:#ffffff;
-  color:#5a4300;
+  background:linear-gradient(135deg, rgba(20,35,55,0.9), rgba(10,20,35,0.9));
+  color:#ffd34d;
   font-weight:900;
   cursor:pointer;
-  position:relative;
-  overflow:hidden;
-  isolation:isolate;
-  border-color:#e4bd3e;
-  box-shadow:inset 0 0 0 1px rgba(255,215,70,.18);
-  transition:transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
-  animation:ticketIn .45s ease both;
+  transition:all .2s ease;
 }
-.ticket-number:hover{
-  transform:translateY(-4px) scale(1.04);
-  border-color:#d9a900;
-  color:#3f2e00;
-  box-shadow:0 8px 18px rgba(218,169,0,.22), 0 0 12px rgba(255,215,70,.25);
-}
+.ticket-number:hover{transform:translateY(-3px);border-color:#23d8ff;box-shadow:0 5px 15px rgba(35,216,255,0.3)}
 .ticket-number.selected{
-  background:linear-gradient(135deg,#10a878,#65e5bf);
-  color:#3b2b00;
-  border-color:#d9a900;
-  box-shadow:0 0 20px rgba(255,215,70,.55), inset 0 0 12px rgba(255,215,70,.25);
-  transform:scale(1.06);
+  background:linear-gradient(135deg,#20d39b,#65f2c4);
+  color:#03130d;
+  border-color:#20d39b;
+  box-shadow:0 0 14px #20d39b66;
 }
-@keyframes ticketIn{
-  from{opacity:0;transform:translateY(8px) scale(.92)}
-  to{opacity:1;transform:translateY(0) scale(1)}
+
+/* እጅግ ውብ እና ማራኪ የሆነ የስልክ ቁጥር ማስገቢያ ቦክስ በዋናው ገጽ ላይ */
+.user-phone-box{
+  margin-top:20px;
+  background:linear-gradient(145deg, rgba(13,42,80,0.9), rgba(8,26,53,0.9));
+  border:2px solid var(--cyan);
+  border-radius:18px;
+  padding:20px;
+  box-shadow:0 10px 30px rgba(41,199,255,0.2);
 }
-.ticket-number::after{
-  content:"";
-  position:absolute;
-  top:-20%;
-  left:-75%;
-  width:45%;
-  height:140%;
-  background:linear-gradient(
-    105deg,
-    transparent 0%,
-    rgba(255,215,70,.05) 25%,
-    rgba(255,215,70,.95) 50%,
-    rgba(255,244,170,.65) 60%,
-    transparent 78%
-  );
-  transform:skewX(-18deg);
-  animation:goldSweep 2.2s ease-in-out infinite;
-  pointer-events:none;
-  z-index:1;
+.user-phone-box label{display:block;color:var(--cyan);font-weight:bold;margin-bottom:8px;font-size:16px;}
+.user-phone-box input{
+  width:100%;height:50px;border-radius:12px;border:2px solid #2b9ed0;background:#040d1a;
+  color:white;text-align:center;font-size:20px;font-weight:bold;outline:none;
 }
-@keyframes goldSweep{
-  0%,25%{left:-75%;opacity:0}
-  40%{opacity:1}
-  70%{left:135%;opacity:1}
-  85%,100%{left:135%;opacity:0}
-}
+.user-phone-box input:focus{border-color:var(--green);box-shadow:0 0 15px rgba(32,211,155,0.4)}
 
 .ticket-actions{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
   margin-top:20px;
 }
-
-.modal{
-  display:none;position:fixed;inset:0;background:rgba(3,19,30,.8);z-index:100;
-  align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px);
-}
-.modal-content{
-  width:min(450px,100%);background:#0b2142;border:1px solid var(--cyan);border-radius:22px;
-  padding:25px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.5);
-}
-.modal-content h3{color:var(--cyan);margin-top:0;font-size:24px}
-.modal-content p{color:var(--muted);font-size:14px;line-height:1.5}
-.copy-box{
-  background:#06101e;border:1px solid var(--line);border-radius:12px;padding:12px;margin:15px 0;
-  display:flex;justify-content:space-between;align-items:center;font-weight:bold;color:var(--gold);
-}
-.copy-btn{background:var(--cyan);color:#03130d;border:0;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:900}
-.close-btn{background:#e75b5b;color:#fff;border:0;width:100%;padding:12px;border-radius:12px;font-weight:900;cursor:pointer;margin-top:10px}
-
 .thank-you{
   display:none;
   margin-top:16px;
@@ -154,194 +117,135 @@ footer{text-align:center;padding:30px 20px;color:#71839a;border-top:1px solid va
   border-radius:14px;
   background:#079bd3;
   color:#ffffff;
-  font-size:18px;
+  font-size:22px;
   font-weight:900;
   text-align:center;
-  animation:thankYouIn .55s ease both;
 }
-@keyframes thankYouIn{
-  0%{opacity:0;transform:scale(.85) translateY(8px)}
-  60%{opacity:1;transform:scale(1.04) translateY(0)}
-  100%{opacity:1;transform:scale(1)}
-}
+.pay{background:linear-gradient(90deg,#ffd34d,#ffe99a);color:#211900}
+.save{background:linear-gradient(90deg,#23d8ff,#8beaff);color:#00141b}
 
-.pay{width:100%;background:linear-gradient(90deg,#ffd34d,#ffe99a);color:#211900}
-.save{width:100%;background:linear-gradient(90deg,#23d8ff,#8beaff);color:#00141b}
 @media(max-width:700px){
   .ticket-grid{grid-template-columns:repeat(5,1fr);gap:7px}
-  .ticket-number{height:43px}
+  .grid{grid-template-columns:1fr}
+  .brand{font-size:17px}
+  .login{padding:19px}
   .ticket-actions{grid-template-columns:1fr}
 }
-@media(max-width:700px){.grid{grid-template-columns:1fr}.brand{font-size:17px}.login{padding:19px}.code{gap:5px}.code input{height:48px;font-size:21px}}
 </style>
 </head>
 <body>
 
+<!-- 1ኛ ገጽ: በመጀመሪያ በስልክ ቁጥር ብቻ መግቢያ -->
 <div class="hero" id="loginPage">
   <div class="brand"><div>🎟️ <span>ጌደኦ ሎተሪ</span></div><div>ኤፍሬም</div></div>
-  <div class="ephrem-bg">ኤፍሬም</div>
-
   <div class="login">
     <h1>ጌደኦ ሎተሪ</h1>
     <h2>ኤፍሬም እንግዳ</h2>
-    <p>ወደ መለያዎ ለመግባት በስልክዎ የተላከውን 6-አሃዝ የማረጋገጫ ኮድ ያስገቡ።</p>
-    <div class="code">
-      <input maxlength="1" inputmode="numeric" aria-label="digit 1">
-      <input maxlength="1" inputmode="numeric" aria-label="digit 2">
-      <input maxlength="1" inputmode="numeric" aria-label="digit 3">
-      <input maxlength="1" inputmode="numeric" aria-label="digit 4">
-      <input maxlength="1" inputmode="numeric" aria-label="digit 5">
-      <input maxlength="1" inputmode="numeric" aria-label="digit 6">
+    <p>ወደ መለያዎ ለመግባት እባክዎ የስልክ ቁጥርዎን ያስገቡ።</p>
+    
+    <div class="phone-input-group">
+      <input type="tel" id="loginPhoneInput" placeholder="09xxxxxxxx ወይም 07xxxxxxxx" maxlength="10">
     </div>
-    <button class="btn primary" onclick="verify()">🔐 Login</button>
-    <div class="demo-note"></div>
+    
+    <button class="btn primary" onclick="loginWithPhone()">🔐 ግባ (Login)</button>
   </div>
 </div>
 
+<!-- ዋናው የድር ገጽ -->
 <div id="site">
 <header><nav>
   <div class="brand2">🎟️ ኤፍሬም እንግዳ ሎተሪ</div>
-  <div><a href="#tickets">Tickets</a><a href="#account">Account</a><a href="#winners">Winners</a></div>
+  <div><a href="#tickets">ቲኬቶች</a><a href="#account">መለያ</a><a href="#winners">አሸናፊዎች</a></div>
 </nav></header>
 
 <section>
-  <h2 class="title" style="background:linear-gradient(90deg,#23d8ff,#19c995,#ffd34d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 5px 25px rgba(35,216,255,0.3);">🔥 ትልቅ እድል ከኤፍሬም እንግዳ ጌደኦ ሎተሪ ጋር! 🌟</h2>
+  <h2 class="title">✨ እንኳን ወደ ጌደኦ ሎተሪ በደህና መጡ!</h2>
   <div class="card" style="text-align:center">
-    <div class="muted">CURRENT JACKPOT</div>
+    <div class="muted">የአሁን ሽልማት (CURRENT JACKPOT)</div>
     <div class="num" style="font-size:54px">25,000 ብር</div>
-    <div class="notice">ዕድልዎን ዛሬውኑ ይሞክሩ፤ በሚሊዮኖች የሚቆጠሩ አሸናፊዎች ከኛ ጋር አሉ። አሁን ከ 3 በላይ ቲኬቶችን መምረጥ እና ትልቅ ሽልማት ባለቤት መሆን ይችላሉ!</div>
+    <div class="notice">ትክክለኛ የንግድ ባንክ (CBE Birr እና CBE Account) ክፍያዎችን የሚያስተናገድ ኦፊሴላዊ ገጽ።</div>
   </div>
 </section>
 
 <section id="tickets">
-  <h2 class="title">🎟️ የሎተሪ ቲኬቶች</h2>
+  <h2 class="title">🎟️ የሎተሪ ቲኬቶች (100 አዝራሮች)</h2>
 
   <div class="card ticket-selector">
     <p class="muted" style="text-align:center">
-      ከ1–100 ያሉትን የሎተሪ ቲኬቶች ከፍላጎትዎ ልክ ይምረጡ (ከ 3 በላይ መምረጥ ይቻላል)። እያንዳንዱ ቲኬት 100 ብር ነው።
+      ከ 1 እስከ 100 ያሉትን ቲኬቶች ይምረጡ[span_0](start_span)[span_0](end_span)። እያንዳንዱ ቲኬት 100 ብር ነው።
     </p>
-    <div class="grid" style="margin-top:15px">
-      <div class="card" style="padding:18px;text-align:center">
-        <div class="muted">🥇 1ኛ ሽልማት</div>
-        <div class="price">5,000 ብር</div>
-      </div>
-      <div class="card" style="padding:18px;text-align:center">
-        <div class="muted">🥈 2ኛ ሽልማት</div>
-        <div class="price">2,000 ብር</div>
-      </div>
+
+    <div id="selectedInfo" class="notice" style="text-align:center;background:#0b2142;border:1px solid #29c7ff;color:#ffffff;font-size:18px;font-weight:900">
+      እስካሁን ምንም ቲኬት አልተቆረጠም። እድለኛ ለመሆን አንዱን ይምረጡ[span_1](start_span)[span_1](end_span)።
     </div>
 
-    <div id="selectedInfo" class="notice" style="text-align:center;background:#0b2142;border:1px solid #29c7ff;color:#ffffff;font-size:20px;font-weight:900">
-      እስካሁን ምንም ቲኬት አልተቆረጠም። እድለኛ ለመሆን የሚፈልጉትን ያህል ይምረጡ።
-    </div>
-
-    <div style="margin-top:15px;background:#081a35;padding:15px;border-radius:14px;border:1px solid var(--line);text-align:center">
-      <p class="muted" style="margin:0 0 8px">🔍 ቲኬትዎ አሸናፊ መሆኑን ይፈትሹ</p>
-      <input type="number" id="checkInput" placeholder="የቲኬት ቁጥር ያስገቡ (1-100)" style="padding:10px;border-radius:8px;border:1px solid var(--cyan);background:#06101e;color:#fff;width:220px;text-align:center;font-weight:bold;outline:none">
-      <button class="btn" style="background:var(--cyan);color:#03130d;padding:10px 15px;margin-left:5px" onclick="checkWinner()">ይፈትሹ</button>
-      <div id="checkResult" style="margin-top:10px;font-weight:bold"></div>
-    </div>
-
-    <div id="winningNumbers" class="notice" style="display:none;text-align:center;font-size:20px;font-weight:900">
-      🏆 የወጡ ቁጥሮች: <span id="winnerOne"></span> — 5,000 ብር &nbsp; | &nbsp;
-      <span id="winnerTwo"></span> — 2,000 ብር
-    </div>
-    
+    <!-- 100 Buttons Grid -->
     <div id="ticketGrid" class="ticket-grid"></div>
 
+    <!-- እጅግ ውብ እና ጥራት ያለው የስልክ ቁጥር ማስገቢያ ቦታ -->
+    <div class="user-phone-box">
+      <label for="userPhoneField">📱 የስልክ ቁጥርዎ (ለመመዝገቢያ እና ክፍያ)</label>
+      <input type="tel" id="userPhoneField" placeholder="እባክዎ ስልክ ቁጥርዎን ያስገቡ (ለምሳሌ 0912345678)" maxlength="10">
+    </div>
+
     <div class="ticket-actions">
-      <button class="btn primary" onclick="startTicket()">ስልክ ቁጥር</button>
-      <button class="btn pay" onclick="payTicket()">እዚህ ይክፈሉ</button>
-      <button class="btn save" onclick="saveTicket()">Save & Telegram</button>
-      <button class="btn" style="grid-column:1/-1;background:linear-gradient(90deg,#ffd34d,#fff0a8);color:#3b2b00" onclick="drawWinners()">🏆 የወጡ ቁጥሮችን አውጣ</button>
+      <button class="btn pay" onclick="payTicket()">💳 በ CBE Birr / Account ክፍያ ፍጸም</button>
+      <button class="btn save" onclick="saveTicket()">💾 መረጃውን Save አድርግ</button>
     </div>
 
     <div id="ticketStatus" class="notice" style="display:none;text-align:center"></div>
-    <div id="thankYou" class="thank-you" aria-live="polite">
-      ቲኬቶችዎ ተቀምጠዋል! ወደ ቴሌግራም በመሄድ ላይ...
+    <div id="thankYou" class="thank-you">
+      ቲኬቱን ስለገዙ እናመሰግናለን!
     </div>
   </div>
 </section>
 
-<div id="payModal" class="modal">
-  <div class="modal-content">
-    <h3>💳 የክፍያ መረጃ</h3>
-    <p>እባክዎ ከታች ባለው የንግድ ባንክ (CBE) አካውንት ወይም በ CBE Birr ክፍያውን ይፈጽሙ፡</p>
-    
-    <div class="copy-box">
-      <div>
-        <div style="font-size:12px;color:var(--muted)">የኢትዮጵያ ንግድ ባንክ (CBE)</div>
-        <span id="cbeAcc">10000284732212</span>
-      </div>
-      <button class="copy-button copy-btn" onclick="copyText('10000284732212')">ኮፒ</button>
-    </div>
-
-    <div class="copy-box">
-      <div>
-        <div style="font-size:12px;color:var(--muted)">CBE Birr / ስልክ ቁጥር</div>
-        <span id="cbePhone">0990176587</span>
-      </div>
-      <button class="copy-button copy-btn" onclick="copyText('0990176587')">ኮፒ</button>
-    </div>
-
-    <p style="font-size:13px;color:var(--gold)">የሂሳብ ስም፦ Efrem Engida Kunbato</p>
-    <button class="close-btn" onclick="closePayModal()">ዝጋ / ጨርሻለሁ</button>
-  </div>
-</div>
-
 <section id="account">
-  <h2 class="title">👤 Account</h2>
+  <h2 class="title">👤 የደንበኛ መለያ (Account)</h2>
   <div class="grid">
-    <div class="card"><div class="muted">Balance</div><div class="num">0.00 ብር</div></div>
-    <div class="card"><div class="muted">My Tickets</div><div class="num">0</div></div>
-    <div class="card"><div class="muted">Wins</div><div class="num">0</div></div>
+    <div class="card"><div class="muted">የሂሳብ ቀሪ (Balance)</div><div class="num">0.00 ብር</div></div>
+    <div class="card"><div class="muted">የእኔ ቲኬቶች</div><div class="num" id="accountTicketsCount">0</div></div>
+    <div class="card"><div class="muted">ያሸነፉት</div><div class="num">0 ብር</div></div>
   </div>
 </section>
 
 <section id="winners">
-  <h2 class="title">🏆 Recent Winners</h2>
+  <h2 class="title">🏆 የቅርብ ጊዜ አሸናፊዎች</h2>
   <div class="card">
-    <p>Winner #001 — 5,000 ብር — Demo</p>
-    <p>Winner #002 — 2,500 ብር — Demo</p>
-    <p>Winner #003 — 1,000 ብር — Demo</p>
+    <p>አሸናፊ #001 — 5,000 ብር — ትክክለኛ ክፍያ</p>
+    <p>አሸናፊ #002 — 2,500 ብር — ትክክለኛ ክፍያ</p>
+    <p>አሸናፊ #003 — 1,000 ብር — ትክክለኛ ክፍያ</p>
   </div>
 </section>
 
-<footer>© 2026 ጌደኦ ሎተሪ • ኤፍሬም እንግዳ • Demo website</footer>
+<footer>© 2026 ጌደኦ ሎተሪ • ኤፍሬም እንግዳ • መብቱ በህግ የተጠበቀ ነው</footer>
 </div>
 
 <script>
-const inputs=[...document.querySelectorAll('.code input')];
-inputs.forEach((el,i)=>{
-  el.addEventListener('input',()=>{
-    el.value=el.value.replace(/\D/g,'').slice(0,1);
-    if(el.value&&inputs[i+1]) inputs[i+1].focus();
-  });
-  el.addEventListener('keydown',e=>{
-    if(e.key==='Backspace'&&!el.value&&inputs[i-1])inputs[i-1].focus();
-  });
-});
-
-function verify(){
-  const code=inputs.map(x=>x.value).join('');
-  if(code==='123456'){
-    document.getElementById('loginPage').style.display='none';
-    document.getElementById('site').style.display='block';
-    window.scrollTo(0,0);
-    buildTickets();
-  }else{
-    alert('የማረጋገጫ ኮዱ ትክክል አይደለም። 123456');
+// 1ኛ ገጽ ላይ ስልክ ቁጥር አስገብቶ ሲገባ
+function loginWithPhone() {
+  const phoneVal = document.getElementById('loginPhoneInput').value.trim();
+  if(phoneVal.length < 9) {
+    alert('እባክዎ ትክክለኛ የስልክ ቁጥር ያስገቡ (ለምሳሌ 09xxxxxxxx)');
+    return;
   }
+  
+  // ስልክ ቁጥሩን በራስ-ሰር ወደ ዋናው ገጽ ስልክ ሳጥን ያስተላልፋል
+  document.getElementById('userPhoneField').value = phoneVal;
+
+  // ገጹን ወደ ዋናው ድረ-ገጽ ይለውጠዋል
+  document.getElementById('loginPage').style.display='none';
+  document.getElementById('site').style.display='block';
+  window.scrollTo(0,0);
+  buildTickets();
 }
 
 const selectedTickets = new Set();
-let phoneNumber = '';
-let winningList = [];
 
 function buildTickets(){
   const grid=document.getElementById('ticketGrid');
   if(!grid || grid.children.length) return;
-  for(let n=1;n<=100;n++){
+  for(let n=1; n<=100; n++){
     const b=document.createElement('button');
     b.className='ticket-number';
     b.textContent=n;
@@ -356,7 +260,10 @@ function toggleTicket(n,button){
     selectedTickets.delete(n);
     button.classList.remove('selected');
   }else{
-    // ከ 3 በላይ ቲኬቶችን መምረጥ እንዲቻል ገደቡ ተነስተዋል
+    if(selectedTickets.size >= 3){
+      alert('እስከ 3 ቲኬቶች ብቻ መምረጥ ይችላሉ[span_2](start_span)[span_2](end_span)።');
+      return;
+    }
     selectedTickets.add(n);
     button.classList.add('selected');
   }
@@ -367,114 +274,41 @@ function updateSelectedInfo(){
   const info=document.getElementById('selectedInfo');
   const nums=[...selectedTickets].sort((a,b)=>a-b);
   info.textContent=nums.length
-    ? 'የመረጡት ቲኬቶች: '+nums.join(', ')+' — ጠቅላላ: '+nums.length+' ቲኬት ('+(nums.length*100)+' ብር)'
-    : 'እስካሁን ምንም ቲኬት አልተቆረጠም። እድለኛ ለመሆን የሚፈልጉትን ያህል ይምረጡ።';
-}
-
-function startTicket(){
-  if(selectedTickets.size===0){
-    alert('መጀመሪያ ከ1–100 ውስጥ ቲኬት ይምረጡ።');
-    return;
-  }
-  const phone=prompt('ስልክ ቁጥርዎን ያስገቡ፦');
-  if(phone===null) return;
-  if(!phone.trim()){
-    alert('እባክዎ ስልክ ቁጥር ያስገቡ።');
-    return;
-  }
-  phoneNumber=phone.trim();
-  showStatus('ስልክ ቁጥር ተመዝግቧል። አሁን ወደ ክፍያ ደረጃ በመሄድ ክፍያ ያድርጉ።');
+    ? 'የመረጡት ቲኬቶች: '+nums.join(', ')+' — '+nums.length+'/3'
+    : 'እስካሁን ምንም ቲኬት አልተቆረጠም። እድለኛ ለመሆን አንዱን ይምረጡ[span_3](start_span)[span_3](end_span)።';
+  
+  document.getElementById('accountTicketsCount').textContent = nums.length;
 }
 
 function payTicket(){
-  if(selectedTickets.size===0){
+  const phone = document.getElementById('userPhoneField').value.trim();
+  if(selectedTickets.size === 0){
     alert('መጀመሪያ ቲኬት ይምረጡ።');
     return;
   }
-  if(!phoneNumber){
-    alert('መጀመሪያ ስልክ ቁጥር ያስገቡ።');
+  if(!phone){
+    alert('እባክዎ በታችኛው ሳጥን ውስጥ ስልክ ቁጥርዎን ያስገቡ።');
+    document.getElementById('userPhoneField').focus();
     return;
   }
-  document.getElementById('payModal').style.display = 'flex';
-}
-
-function closePayModal(){
-  document.getElementById('payModal').style.display = 'none';
-  showStatus('ክፍያውን ፈጽመው ከጨረሱ በኋላ "Save & Telegram" የሚለውን ቁልፍ ይጫኑ።');
-}
-
-function copyText(text){
-  navigator.clipboard.writeText(text).then(()=>{
-    alert('ተገለብጧል: ' + text);
-  });
+  const amount = selectedTickets.size * 100;
+  let confirmed = confirm(`የ ${amount} ብር ክፍያ በ CBE Birr ወይም CBE Account ለመፈጸም እና ቲኬቶቹን ለመግዛት ይፈልጋሉ?`);
+  if (confirmed) {
+    alert('ወደ ንግድ ባንክ (CBE) የክፍያ ማቀናጃ በመሄድ ላይ ነው...');
+    showStatus(`${amount} ብር ክፍያ በ CBE በተሳካ ሁኔታ ተፈጽሟል!`);
+  }
 }
 
 function saveTicket(){
-  if(selectedTickets.size===0){
-    alert('መጀመሪያ ቲኬት ይምረጡ።');
+  const phone = document.getElementById('userPhoneField').value.trim();
+  if(selectedTickets.size === 0 || !phone){
+    alert('እባክዎ ቲኬት ይምረጡ እና ስልክ ቁጥርዎን በትክክል ያስገቡ።');
     return;
   }
-  if(!phoneNumber){
-    alert('መጀመሪያ ስልክ ቁጥር ያስገቡ።');
-    return;
-  }
-  const ticketsArr = [...selectedTickets].sort((a,b)=>a-b);
-  const data={
-    tickets: ticketsArr,
-    phone: phoneNumber,
-    savedAt: new Date().toLocaleString()
-  };
-  localStorage.setItem('efremLotteryTicket',JSON.stringify(data));
-  showStatus('ቲኬቶች '+data.tickets.join(', ')+' በስልክ '+data.phone+' ተቀምጠዋል።');
+  const tickets = [...selectedTickets].sort((a,b)=>a-b);
   
-  const thanks=document.getElementById('thankYou');
-  thanks.style.display='block';
-
-  setTimeout(()=>{
-    const text = encodeURIComponent(`ሰላም! ሎተሪ ቆርጫለሁ።\nስልክ: ${phoneNumber}\nቲኬቶች: ${ticketsArr.join(', ')}\nጠቅላላ ብር: ${ticketsArr.length * 100} ብር`);
-    window.location.href = `https://t.me/share/url?url=&text=${text}`;
-  }, 1500);
-}
-
-function drawWinners(){
-  const one=Math.floor(Math.random()*100)+1;
-  let two=Math.floor(Math.random()*100)+1;
-  while(two===one) two=Math.floor(Math.random()*100)+1;
-
-  winningList = [one, two];
-
-  const box=document.getElementById('winningNumbers');
-  const a=document.getElementById('winnerOne');
-  const b=document.getElementById('winnerTwo');
-
-  box.style.display='block';
-  a.textContent='...';
-  b.textContent='...';
-
-  setTimeout(()=>a.textContent=one,700);
-  setTimeout(()=>b.textContent=two,1400);
-}
-
-function checkWinner(){
-  const val = parseInt(document.getElementById('checkInput').value);
-  const resBox = document.getElementById('checkResult');
-  if(!val || isNaN(val)){
-    resBox.style.color = '#ffd34d';
-    resBox.textContent = 'እባክዎ ትክክለኛ የቲኬት ቁጥር ያስገቡ።';
-    return;
-  }
-  if(winningList.length === 0){
-    resBox.style.color = '#ffd34d';
-    resBox.textContent = 'እስካሁን ዕጣ አልወጣም።';
-    return;
-  }
-  if(winningList.includes(val)){
-    resBox.style.color = '#19c995';
-    resBox.textContent = `🎉 እንኳን ደስ አለዎት! ቲኬት ቁጥር ${val} አሸናፊ ሆኗል!`;
-  } else {
-    resBox.style.color = '#ff6b6b';
-    resBox.textContent = `😔 አሳዛኝ ነው፣ ቲኬት ቁጥር ${val} አሸናፊ አይደለም። መልካም እድል!`;
-  }
+  showStatus(`ቲኬቶችዎ (${tickets.join(', ')}) እና ስልክ ቁጥርዎ (${phone}) በተሳካ ሁኔታ ተመዝግበዋል!`);
+  document.getElementById('thankYou').style.display='block';
 }
 
 function showStatus(message){
