@@ -35,12 +35,10 @@ body{
 .login h2{margin:0 0 8px;font-size:25px;color:var(--gold)}
 .login p{color:var(--muted);line-height:1.55;margin:8px 0 18px}
 
-/* የስልክ ቁጥር መግቢያ ዲዛይን */
 .phone-input-group{margin-bottom:15px}
 .phone-input-group input{
   width:100%;height:55px;border-radius:14px;border:2px solid #2b9ed0;background:#06101e;
   color:white;text-align:center;font-size:22px;font-weight:900;outline:none;letter-spacing:2px;
-  transition:all 0.3s ease;
 }
 .phone-input-group input:focus{border-color:var(--green);box-shadow:0 0 20px rgba(32,211,155,0.4)}
 
@@ -88,26 +86,10 @@ footer{text-align:center;padding:30px 20px;color:#8295ab;border-top:1px solid va
   box-shadow:0 0 14px #20d39b66;
 }
 
-/* እጅግ ውብ እና ማራኪ የሆነ የስልክ ቁጥር ማስገቢያ ቦክስ በዋናው ገጽ ላይ */
-.user-phone-box{
-  margin-top:20px;
-  background:linear-gradient(145deg, rgba(13,42,80,0.9), rgba(8,26,53,0.9));
-  border:2px solid var(--cyan);
-  border-radius:18px;
-  padding:20px;
-  box-shadow:0 10px 30px rgba(41,199,255,0.2);
-}
-.user-phone-box label{display:block;color:var(--cyan);font-weight:bold;margin-bottom:8px;font-size:16px;}
-.user-phone-box input{
-  width:100%;height:50px;border-radius:12px;border:2px solid #2b9ed0;background:#040d1a;
-  color:white;text-align:center;font-size:20px;font-weight:bold;outline:none;
-}
-.user-phone-box input:focus{border-color:var(--green);box-shadow:0 0 15px rgba(32,211,155,0.4)}
-
 .ticket-actions{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
   margin-top:20px;
 }
 .thank-you{
@@ -121,8 +103,8 @@ footer{text-align:center;padding:30px 20px;color:#8295ab;border-top:1px solid va
   font-weight:900;
   text-align:center;
 }
-.pay{background:linear-gradient(90deg,#ffd34d,#ffe99a);color:#211900}
-.save{background:linear-gradient(90deg,#23d8ff,#8beaff);color:#00141b}
+.pay{width:100%;background:linear-gradient(90deg,#ffd34d,#ffe99a);color:#211900}
+.save{width:100%;background:linear-gradient(90deg,#23d8ff,#8beaff);color:#00141b}
 
 @media(max-width:700px){
   .ticket-grid{grid-template-columns:repeat(5,1fr);gap:7px}
@@ -135,7 +117,7 @@ footer{text-align:center;padding:30px 20px;color:#8295ab;border-top:1px solid va
 </head>
 <body>
 
-<!-- 1ኛ ገጽ: በመጀመሪያ በስልክ ቁጥር ብቻ መግቢያ -->
+<!-- በመጀመሪያ በስልክ ቁጥር ብቻ የሚደረግ መግቢያ (Login) -->
 <div class="hero" id="loginPage">
   <div class="brand"><div>🎟️ <span>ጌደኦ ሎተሪ</span></div><div>ኤፍሬም</div></div>
   <div class="login">
@@ -182,15 +164,11 @@ footer{text-align:center;padding:30px 20px;color:#8295ab;border-top:1px solid va
     <!-- 100 Buttons Grid -->
     <div id="ticketGrid" class="ticket-grid"></div>
 
-    <!-- እጅግ ውብ እና ጥራት ያለው የስልክ ቁጥር ማስገቢያ ቦታ -->
-    <div class="user-phone-box">
-      <label for="userPhoneField">📱 የስልክ ቁጥርዎ (ለመመዝገቢያ እና ክፍያ)</label>
-      <input type="tel" id="userPhoneField" placeholder="እባክዎ ስልክ ቁጥርዎን ያስገቡ (ለምሳሌ 0912345678)" maxlength="10">
-    </div>
-
+    <!-- ቀድሞ እንደነበረው ባለ 3 አዝራር (Buttons) መዋቅር -->
     <div class="ticket-actions">
-      <button class="btn pay" onclick="payTicket()">💳 በ CBE Birr / Account ክፍያ ፍጸም</button>
-      <button class="btn save" onclick="saveTicket()">💾 መረጃውን Save አድርግ</button>
+      <button class="btn primary" onclick="startTicket()">1ኛ ክሊክ: ስልክ ቁጥር አስቀምጥ</button>
+      <button class="btn pay" onclick="payTicket()">2ኛ ክሊክ: ብር ከፍል (CBE)</button>
+      <button class="btn save" onclick="saveTicket()">መረጃውን Save አድርግ</button>
     </div>
 
     <div id="ticketStatus" class="notice" style="display:none;text-align:center"></div>
@@ -222,18 +200,16 @@ footer{text-align:center;padding:30px 20px;color:#8295ab;border-top:1px solid va
 </div>
 
 <script>
-// 1ኛ ገጽ ላይ ስልክ ቁጥር አስገብቶ ሲገባ
+let globalPhone = '';
+
 function loginWithPhone() {
   const phoneVal = document.getElementById('loginPhoneInput').value.trim();
   if(phoneVal.length < 9) {
     alert('እባክዎ ትክክለኛ የስልክ ቁጥር ያስገቡ (ለምሳሌ 09xxxxxxxx)');
     return;
   }
-  
-  // ስልክ ቁጥሩን በራስ-ሰር ወደ ዋናው ገጽ ስልክ ሳጥን ያስተላልፋል
-  document.getElementById('userPhoneField').value = phoneVal;
+  globalPhone = phoneVal;
 
-  // ገጹን ወደ ዋናው ድረ-ገጽ ይለውጠዋል
   document.getElementById('loginPage').style.display='none';
   document.getElementById('site').style.display='block';
   window.scrollTo(0,0);
@@ -241,6 +217,7 @@ function loginWithPhone() {
 }
 
 const selectedTickets = new Set();
+let registeredPhone = '';
 
 function buildTickets(){
   const grid=document.getElementById('ticketGrid');
@@ -280,19 +257,32 @@ function updateSelectedInfo(){
   document.getElementById('accountTicketsCount').textContent = nums.length;
 }
 
+function startTicket(){
+  if(selectedTickets.size === 0){
+    alert('መጀመሪያ ከ 1 እስከ 100 ካሉት ውስጥ ቲኬት ይምረጡ[span_4](start_span)[span_4](end_span)።');
+    return;
+  }
+  let phone = prompt('1ኛ ክሊክ: የስልክ ቁጥርዎን ያስገቡ:', globalPhone);
+  if(phone === null) return;
+  if(!phone.trim()){
+    alert('እባክዎ ትክክለኛ ስልክ ቁጥር ያስገቡ።');
+    return;
+  }
+  registeredPhone = phone.trim();
+  showStatus(`ስልክ ቁጥርዎ (${registeredPhone}) ተመዝግቧል! አሁን 2ኛውን ክሊክ በመጠቀም ክፍያ ይፈጽሙ።`);
+}
+
 function payTicket(){
-  const phone = document.getElementById('userPhoneField').value.trim();
   if(selectedTickets.size === 0){
     alert('መጀመሪያ ቲኬት ይምረጡ።');
     return;
   }
-  if(!phone){
-    alert('እባክዎ በታችኛው ሳጥን ውስጥ ስልክ ቁጥርዎን ያስገቡ።');
-    document.getElementById('userPhoneField').focus();
+  if(!registeredPhone){
+    alert('መጀመሪያ 1ኛውን ቁልፍ ተጭነው ስልክ ቁጥር ያስገቡ።');
     return;
   }
   const amount = selectedTickets.size * 100;
-  let confirmed = confirm(`የ ${amount} ብር ክፍያ በ CBE Birr ወይም CBE Account ለመፈጸም እና ቲኬቶቹን ለመግዛት ይፈልጋሉ?`);
+  let confirmed = confirm(`2ኛ ክሊክ: የ ${amount} ብር ክፍያ በ CBE Birr ወይም CBE Account ለመፈጸም ይፈልጋሉ?`);
   if (confirmed) {
     alert('ወደ ንግድ ባንክ (CBE) የክፍያ ማቀናጃ በመሄድ ላይ ነው...');
     showStatus(`${amount} ብር ክፍያ በ CBE በተሳካ ሁኔታ ተፈጽሟል!`);
@@ -300,14 +290,12 @@ function payTicket(){
 }
 
 function saveTicket(){
-  const phone = document.getElementById('userPhoneField').value.trim();
-  if(selectedTickets.size === 0 || !phone){
-    alert('እባክዎ ቲኬት ይምረጡ እና ስልክ ቁጥርዎን በትክክል ያስገቡ።');
+  if(selectedTickets.size === 0 || !registeredPhone){
+    alert('እባክዎ ቲኬት ይምረጡ እና ስልክ ቁጥር ያስገቡ።');
     return;
   }
   const tickets = [...selectedTickets].sort((a,b)=>a-b);
-  
-  showStatus(`ቲኬቶችዎ (${tickets.join(', ')}) እና ስልክ ቁጥርዎ (${phone}) በተሳካ ሁኔታ ተመዝግበዋል!`);
+  showStatus(`ቲኬቶችዎ (${tickets.join(', ')}) እና ስልክ ቁጥርዎ (${registeredPhone}) ተመዝግበዋል!`);
   document.getElementById('thankYou').style.display='block';
 }
 
