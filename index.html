@@ -86,10 +86,50 @@ footer{text-align:center;padding:30px 20px;color:#8295ab;border-top:1px solid va
   box-shadow:0 0 14px #20d39b66;
 }
 
+/* ወርቃማ ስም (Gold Signature Style) */
+.gold-signature {
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  color: var(--gold);
+  text-shadow: 0 0 12px rgba(255, 211, 77, 0.6);
+  margin: 18px 0 10px 0;
+  letter-spacing: 1px;
+}
+
+.telegram-payment-box{
+  margin-top:20px;
+  background:linear-gradient(145deg, rgba(11,33,66,0.95), rgba(6,21,47,0.92));
+  border:2px solid var(--cyan);
+  border-radius:18px;
+  padding:20px;
+  text-align:left;
+}
+.copy-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#06101e;
+  padding:12px 15px;
+  border-radius:10px;
+  margin:10px 0;
+  border:1px solid var(--line);
+}
+.copy-btn{
+  background:var(--cyan);
+  color:#03130d;
+  border:none;
+  padding:6px 12px;
+  font-weight:bold;
+  border-radius:8px;
+  cursor:pointer;
+}
+.copy-btn:hover{background:var(--green)}
+
 .ticket-actions{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
   margin-top:20px;
 }
 .thank-you{
@@ -103,8 +143,8 @@ footer{text-align:center;padding:30px 20px;color:#8295ab;border-top:1px solid va
   font-weight:900;
   text-align:center;
 }
-.pay{width:100%;background:linear-gradient(90deg,#ffd34d,#ffe99a);color:#211900}
-.save{width:100%;background:linear-gradient(90deg,#23d8ff,#8beaff);color:#00141b}
+.pay{background:linear-gradient(90deg,#ffd34d,#ffe99a);color:#211900}
+.save{background:linear-gradient(90deg,#23d8ff,#8beaff);color:#00141b}
 
 @media(max-width:700px){
   .ticket-grid{grid-template-columns:repeat(5,1fr);gap:7px}
@@ -117,7 +157,7 @@ footer{text-align:center;padding:30px 20px;color:#8295ab;border-top:1px solid va
 </head>
 <body>
 
-<!-- በመጀመሪያ በስልክ ቁጥር ብቻ የሚደረግ መግቢያ (Login) -->
+<!-- የመግቢያ ገጽ -->
 <div class="hero" id="loginPage">
   <div class="brand"><div>🎟️ <span>ጌደኦ ሎተሪ</span></div><div>ኤፍሬም</div></div>
   <div class="login">
@@ -154,21 +194,44 @@ footer{text-align:center;padding:30px 20px;color:#8295ab;border-top:1px solid va
 
   <div class="card ticket-selector">
     <p class="muted" style="text-align:center">
-      ከ 1 እስከ 100 ያሉትን ቲኬቶች ይምረጡ[span_0](start_span)[span_0](end_span)። እያንዳንዱ ቲኬት 100 ብር ነው።
+      ከ 1 እስከ 100 ያሉትን ቲኬቶች ይምረጡ። እያንዳንዱ ቲኬት 100 ብር ነው።
     </p>
 
     <div id="selectedInfo" class="notice" style="text-align:center;background:#0b2142;border:1px solid #29c7ff;color:#ffffff;font-size:18px;font-weight:900">
-      እስካሁን ምንም ቲኬት አልተቆረጠም። እድለኛ ለመሆን አንዱን ይምረጡ[span_1](start_span)[span_1](end_span)።
+      እስካሁን ምንም ቲኬት አልተቆረጠም። እድለኛ ለመሆን አንዱን ይምረጡ።
     </div>
 
-    <!-- 100 Buttons Grid -->
+    <!-- 100 አዝራሮች ግሪድ -->
     <div id="ticketGrid" class="ticket-grid"></div>
 
-    <!-- ቀድሞ እንደነበረው ባለ 3 አዝራር (Buttons) መዋቅር -->
+    <!-- በወርቃማ ፊደል የተጻፈ ስም -->
+    <div class="gold-signature">✨ Efrem Engida ✨</div>
+
+    <!-- የክፍያ አማራጮች እና ኮፒ ማድረጊያ -->
+    <div class="telegram-payment-box">
+      <h3 style="color:var(--gold);margin-top:0;">💳 የክፍያ አማራጮች እና የቴሌግራም ማስተሳሰሪያ</h3>
+      <p class="muted" style="font-size:14px;">እባክዎ ከታች ያሉትን ትክክለኛ መረጃዎች በመጠቀም ክፍያ ይፈጽሙ።</p>
+      
+      <div class="copy-row">
+        <div>
+          <span style="font-size:13px;color:var(--muted);display:block">የንግድ ባንክ (CBE Account)</span>
+          <strong id="cbeAcc">1000284732212</strong>
+        </div>
+        <button class="copy-btn" onclick="copyText('1000284732212', this)">ኮፒ (Copy)</button>
+      </div>
+
+      <div class="copy-row">
+        <div>
+          <span style="font-size:13px;color:var(--muted);display:block">የቴሌግራም ስልክ ቁጥር / ቦት</span>
+          <strong id="tgPhone">0990176587</strong>
+        </div>
+        <button class="copy-btn" onclick="copyText('0990176587', this)">ኮፒ (Copy)</button>
+      </div>
+    </div>
+
     <div class="ticket-actions">
-      <button class="btn primary" onclick="startTicket()">1ኛ ክሊክ: ስልክ ቁጥር አስቀምጥ</button>
-      <button class="btn pay" onclick="payTicket()">2ኛ ክሊክ: ብር ከፍል (CBE)</button>
-      <button class="btn save" onclick="saveTicket()">መረጃውን Save አድርግ</button>
+      <button class="btn pay" onclick="payTicket()">💳 ክፍያ ፈጸም (CBE)</button>
+      <button class="btn save" onclick="saveAndTelegram()">💾 Save & ቴሌግራም አያይዝ</button>
     </div>
 
     <div id="ticketStatus" class="notice" style="display:none;text-align:center"></div>
@@ -200,7 +263,7 @@ footer{text-align:center;padding:30px 20px;color:#8295ab;border-top:1px solid va
 </div>
 
 <script>
-let globalPhone = '';
+let activePhone = '';
 
 function loginWithPhone() {
   const phoneVal = document.getElementById('loginPhoneInput').value.trim();
@@ -208,7 +271,7 @@ function loginWithPhone() {
     alert('እባክዎ ትክክለኛ የስልክ ቁጥር ያስገቡ (ለምሳሌ 09xxxxxxxx)');
     return;
   }
-  globalPhone = phoneVal;
+  activePhone = phoneVal;
 
   document.getElementById('loginPage').style.display='none';
   document.getElementById('site').style.display='block';
@@ -217,7 +280,6 @@ function loginWithPhone() {
 }
 
 const selectedTickets = new Set();
-let registeredPhone = '';
 
 function buildTickets(){
   const grid=document.getElementById('ticketGrid');
@@ -238,7 +300,7 @@ function toggleTicket(n,button){
     button.classList.remove('selected');
   }else{
     if(selectedTickets.size >= 3){
-      alert('እስከ 3 ቲኬቶች ብቻ መምረጥ ይችላሉ[span_2](start_span)[span_2](end_span)።');
+      alert('እስከ 3 ቲኬቶች ብቻ መምረጥ ይችላሉ።');
       return;
     }
     selectedTickets.add(n);
@@ -252,24 +314,23 @@ function updateSelectedInfo(){
   const nums=[...selectedTickets].sort((a,b)=>a-b);
   info.textContent=nums.length
     ? 'የመረጡት ቲኬቶች: '+nums.join(', ')+' — '+nums.length+'/3'
-    : 'እስካሁን ምንም ቲኬት አልተቆረጠም። እድለኛ ለመሆን አንዱን ይምረጡ[span_3](start_span)[span_3](end_span)።';
+    : 'እስካሁን ምንም ቲኬት አልተቆረጠም። እድለኛ ለመሆን አንዱን ይምረጡ።';
   
   document.getElementById('accountTicketsCount').textContent = nums.length;
 }
 
-function startTicket(){
-  if(selectedTickets.size === 0){
-    alert('መጀመሪያ ከ 1 እስከ 100 ካሉት ውስጥ ቲኬት ይምረጡ[span_4](start_span)[span_4](end_span)።');
-    return;
-  }
-  let phone = prompt('1ኛ ክሊክ: የስልክ ቁጥርዎን ያስገቡ:', globalPhone);
-  if(phone === null) return;
-  if(!phone.trim()){
-    alert('እባክዎ ትክክለኛ ስልክ ቁጥር ያስገቡ።');
-    return;
-  }
-  registeredPhone = phone.trim();
-  showStatus(`ስልክ ቁጥርዎ (${registeredPhone}) ተመዝግቧል! አሁን 2ኛውን ክሊክ በመጠቀም ክፍያ ይፈጽሙ።`);
+function copyText(text, btnElement) {
+  navigator.clipboard.writeText(text).then(() => {
+    const originalText = btnElement.textContent;
+    btnElement.textContent = 'ኮፒ ሆኗል! (Copied)';
+    btnElement.style.background = '#19c995';
+    setTimeout(() => {
+      btnElement.textContent = originalText;
+      btnElement.style.background = '';
+    }, 2000);
+  }).catch(err => {
+    alert('ኮፒ ማድረግ አልተቻለም።');
+  });
 }
 
 function payTicket(){
@@ -277,26 +338,27 @@ function payTicket(){
     alert('መጀመሪያ ቲኬት ይምረጡ።');
     return;
   }
-  if(!registeredPhone){
-    alert('መጀመሪያ 1ኛውን ቁልፍ ተጭነው ስልክ ቁጥር ያስገቡ።');
-    return;
-  }
   const amount = selectedTickets.size * 100;
-  let confirmed = confirm(`2ኛ ክሊክ: የ ${amount} ብር ክፍያ በ CBE Birr ወይም CBE Account ለመፈጸም ይፈልጋሉ?`);
+  let confirmed = confirm(`የ ${amount} ብር ክፍያ በ CBE Birr ወይም CBE Account ለመፈጸም ይፈልጋሉ?`);
   if (confirmed) {
     alert('ወደ ንግድ ባንክ (CBE) የክፍያ ማቀናጃ በመሄድ ላይ ነው...');
-    showStatus(`${amount} ብር ክፍያ በ CBE በተሳካ ሁኔታ ተፈጽሟል!`);
+    showStatus(`${amount} ብር ክፍያ በ CBE በተሳካ ሁኔታ ተፈጽሟል! ደረሰኙን በቴሌግራም ይላኩ።`);
   }
 }
 
-function saveTicket(){
-  if(selectedTickets.size === 0 || !registeredPhone){
-    alert('እባክዎ ቲኬት ይምረጡ እና ስልክ ቁጥር ያስገቡ።');
+function saveAndTelegram(){
+  if(selectedTickets.size === 0){
+    alert('እባክዎ መጀመሪያ ቲኬት ይምረጡ።');
     return;
   }
   const tickets = [...selectedTickets].sort((a,b)=>a-b);
-  showStatus(`ቲኬቶችዎ (${tickets.join(', ')}) እና ስልክ ቁጥርዎ (${registeredPhone}) ተመዝግበዋል!`);
+  showStatus(`ቲኬቶችዎ (${tickets.join(', ')}) ተቀምጠዋል! አሁን ከቴሌግራም ጋር በመገናኘት ላይ...`);
   document.getElementById('thankYou').style.display='block';
+  
+  setTimeout(() => {
+    const message = encodeURIComponent(`ሰላም ኤፍሬም እንግዳ, ቲኬቶቼን ቆርጫለሁ። ቁጥሮቼ: ${tickets.join(', ')} (ስልኬ: ${activePhone})`);
+    window.open(`https://t.me/share/url?url=&text=${message}`, '_blank');
+  }, 1000);
 }
 
 function showStatus(message){
