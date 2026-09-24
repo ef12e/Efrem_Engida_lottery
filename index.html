@@ -97,7 +97,9 @@ footer{text-align:center;padding:30px 20px;color:#8295ab;border-top:1px solid va
   letter-spacing: 1px;
 }
 
+/* የክፍያ ቦክስ (መጀመሪያ ተደብቆ በክፍያ አዝራር ሲገባ የሚከፈት) */
 .telegram-payment-box{
+  display: none;
   margin-top:20px;
   background:linear-gradient(145deg, rgba(11,33,66,0.95), rgba(6,21,47,0.92));
   border:2px solid var(--cyan);
@@ -127,8 +129,8 @@ footer{text-align:center;padding:30px 20px;color:#8295ab;border-top:1px solid va
 .copy-btn:hover{background:var(--green)}
 
 .ticket-actions{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
+  display:flex;
+  flex-direction:column;
   gap:12px;
   margin-top:20px;
 }
@@ -145,13 +147,13 @@ footer{text-align:center;padding:30px 20px;color:#8295ab;border-top:1px solid va
 }
 .pay{background:linear-gradient(90deg,#ffd34d,#ffe99a);color:#211900}
 .save{background:linear-gradient(90deg,#23d8ff,#8beaff);color:#00141b}
+.phone-btn{background:linear-gradient(90deg,#19c995,#65f2c4);color:#03130d}
 
 @media(max-width:700px){
   .ticket-grid{grid-template-columns:repeat(5,1fr);gap:7px}
   .grid{grid-template-columns:1fr}
   .brand{font-size:17px}
   .login{padding:19px}
-  .ticket-actions{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -207,31 +209,37 @@ footer{text-align:center;padding:30px 20px;color:#8295ab;border-top:1px solid va
     <!-- በወርቃማ ፊደል የተጻፈ ስም -->
     <div class="gold-signature">✨ Efrem Engida ✨</div>
 
-    <!-- የክፍያ አማራጮች እና ኮፒ ማድረጊያ -->
-    <div class="telegram-payment-box">
-      <h3 style="color:var(--gold);margin-top:0;">💳 የክፍያ አማራጮች እና የቴሌግራም ማስተሳሰሪያ</h3>
-      <p class="muted" style="font-size:14px;">እባክዎ ከታች ያሉትን ትክክለኛ መረጃዎች በመጠቀም ክፍያ ይፈጽሙ።</p>
-      
-      <div class="copy-row">
-        <div>
-          <span style="font-size:13px;color:var(--muted);display:block">የንግድ ባንክ (CBE Account)</span>
-          <strong id="cbeAcc">1000284732212</strong>
-        </div>
-        <button class="copy-btn" onclick="copyText('1000284732212', this)">ኮፒ (Copy)</button>
-      </div>
-
-      <div class="copy-row">
-        <div>
-          <span style="font-size:13px;color:var(--muted);display:block">የቴሌግራም ስልክ ቁጥር / ቦት</span>
-          <strong id="tgPhone">0990176587</strong>
-        </div>
-        <button class="copy-btn" onclick="copyText('0990176587', this)">ኮፒ (Copy)</button>
-      </div>
-    </div>
-
     <div class="ticket-actions">
-      <button class="btn pay" onclick="payTicket()">💳 ክፍያ ፈጸም (CBE)</button>
-      <button class="btn save" onclick="saveAndTelegram()">💾 Save & ቴሌግራም አያይዝ</button>
+      <!-- ስልክ ማስገቢያ ቁልፍ ከክፍያ ቁልፍ በላይ -->
+      <button class="btn phone-btn" onclick="promptPhoneUpdate()">📞 የስልክ ቁጥር መቀየሪያ / ማረጋገጫ</button>
+      
+      <!-- ክፍያ ፈጸም አዝራር -->
+      <button class="btn pay" onclick="togglePaymentBox()">💳 ክፍያ ፈጸም (CBE)</button>
+
+      <!-- የክፍያ አማራጮች እና ኮፒ ማድረጊያ (በክፍያ አዝራር ስር የሚከፈት) -->
+      <div id="telegramPaymentBox" class="telegram-payment-box">
+        <h3 style="color:var(--gold);margin-top:0;">💳 የክፍያ አማራጮች እና የቴሌግራም ማስተሳሰሪያ</h3>
+        <p class="muted" style="font-size:14px;">እባክዎ ከታች ያሉትን ትክክለኛ መረጃዎች በመጠቀም ክፍያ ይፈጽሙ።</p>
+        
+        <div class="copy-row">
+          <div>
+            <span style="font-size:13px;color:var(--muted);display:block">የንግድ ባንክ (CBE Account)</span>
+            <strong id="cbeAcc">1000284732212</strong>
+          </div>
+          <button class="copy-btn" onclick="copyText('1000284732212', this)">ኮፒ (Copy)</button>
+        </div>
+
+        <div class="copy-row">
+          <div>
+            <span style="font-size:13px;color:var(--muted);display:block">የቴሌግራም ስልክ ቁጥር / ቦት</span>
+            <strong id="tgPhone">0990176587</strong>
+          </div>
+          <button class="copy-btn" onclick="copyText('0990176587', this)">ኮፒ (Copy)</button>
+        </div>
+      </div>
+
+      <!-- Save አዝራር (በጥልቀት ከቴሌግራም ጋር የተያያዘ) -->
+      <button class="btn save" onclick="saveAndTelegram()">💾 Save & ቴሌግራም ግሩፕ ግባ</button>
     </div>
 
     <div id="ticketStatus" class="notice" style="display:none;text-align:center"></div>
@@ -277,6 +285,14 @@ function loginWithPhone() {
   document.getElementById('site').style.display='block';
   window.scrollTo(0,0);
   buildTickets();
+}
+
+function promptPhoneUpdate() {
+  let newPhone = prompt('ስልክ ቁጥርዎን ያስገቡ ወይም ያስተካክሉ:', activePhone);
+  if(newPhone !== null && newPhone.trim() !== '') {
+    activePhone = newPhone.trim();
+    alert('ስልክ ቁጥርዎ ተስተካክሏል: ' + activePhone);
+  }
 }
 
 const selectedTickets = new Set();
@@ -333,16 +349,18 @@ function copyText(text, btnElement) {
   });
 }
 
-function payTicket(){
+function togglePaymentBox() {
   if(selectedTickets.size === 0){
     alert('መጀመሪያ ቲኬት ይምረጡ።');
     return;
   }
-  const amount = selectedTickets.size * 100;
-  let confirmed = confirm(`የ ${amount} ብር ክፍያ በ CBE Birr ወይም CBE Account ለመፈጸም ይፈልጋሉ?`);
-  if (confirmed) {
-    alert('ወደ ንግድ ባንክ (CBE) የክፍያ ማቀናጃ በመሄድ ላይ ነው...');
-    showStatus(`${amount} ብር ክፍያ በ CBE በተሳካ ሁኔታ ተፈጽሟል! ደረሰኙን በቴሌግራም ይላኩ።`);
+  const box = document.getElementById('telegramPaymentBox');
+  if(box.style.display === 'block'){
+    box.style.display = 'none';
+  } else {
+    box.style.display = 'block';
+    const amount = selectedTickets.size * 100;
+    showStatus(`የተመረጡት ${selectedTickets.size} ቲኬቶች ድምር ${amount} ብር ነው። ከላይ ያሉትን የባንክ መረጃዎች ተጠቅመው ክፍያ ይፈጽሙ።`);
   }
 }
 
@@ -352,11 +370,12 @@ function saveAndTelegram(){
     return;
   }
   const tickets = [...selectedTickets].sort((a,b)=>a-b);
-  showStatus(`ቲኬቶችዎ (${tickets.join(', ')}) ተቀምጠዋል! አሁን ከቴሌግራም ጋር በመገናኘት ላይ...`);
+  showStatus(`ቲኬቶችዎ (${tickets.join(', ')}) ተቀምጠዋል! ወደ ቴሌግራም ግሩፕ/ቦት በመሄድ ላይ...`);
   document.getElementById('thankYou').style.display='block';
   
   setTimeout(() => {
-    const message = encodeURIComponent(`ሰላም ኤፍሬም እንግዳ, ቲኬቶቼን ቆርጫለሁ። ቁጥሮቼ: ${tickets.join(', ')} (ስልኬ: ${activePhone})`);
+    const message = encodeURIComponent(`ሰላም ኤፍሬም እንግዳ፣ ቲኬቶቼን ቆርጫለሁ። ቁጥሮቼ: ${tickets.join(', ')} (ስልኬ: ${activePhone})`);
+    // ወደ ትክክለኛው የቴሌግራም ግሩፕ ወይም ቻናል ሊንክ መቀየር ይቻላል
     window.open(`https://t.me/share/url?url=&text=${message}`, '_blank');
   }, 1000);
 }
